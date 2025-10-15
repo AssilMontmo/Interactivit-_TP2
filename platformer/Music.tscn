@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://uiv4o0vrwr2g"]
+
+[ext_resource type="AudioStream" uid="uid://ikl3chmfvvjb" path="res://Assets/Music/Game Music Loop - Efecto de sonido (HD) - Efecto de sonido (HD) (youtube).mp3" id="1_fw6bl"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_fw6bl")
+autoplay = true

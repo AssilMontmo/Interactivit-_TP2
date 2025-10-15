@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ikl3chmfvvjb"
+path="res://.godot/imported/Game Music Loop - Efecto de sonido (HD) - Efecto de sonido (HD) (youtube).mp3-eaa9d261022f5ca8188eca5fc0ca0024.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/Game Music Loop - Efecto de sonido (HD) - Efecto de sonido (HD) (youtube).mp3"
+dest_files=["res://.godot/imported/Game Music Loop - Efecto de sonido (HD) - Efecto de sonido (HD) (youtube).mp3-eaa9d261022f5ca8188eca5fc0ca0024.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4
