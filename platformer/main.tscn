@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://bt3hal3rgh54x"]
+[gd_scene load_steps=10 format=4 uid="uid://bt3hal3rgh54x"]
 
 [ext_resource type="PackedScene" uid="uid://qx8ypcr0pvck" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://d0t7rkllpr3jf" path="res://Assets/Level/6axfm8uck3oy.png" id="3_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://bkcf08ggk6ftq" path="res://Assets/Level/1_Mine_Tileset_1.png" id="3_h2yge"]
+[ext_resource type="AudioStream" uid="uid://cv1qkb3qf47jm" path="res://Assets/Music/Jump Sound Effect (High Quality) - JUKEBOX (youtube).mp3" id="4_lquwl"]
+[ext_resource type="AudioStream" uid="uid://pdadwp2tmsm8" path="res://Assets/Music/Dash.mp3" id="5_7mycd"]
 
 [sub_resource type="Curve" id="Curve_ig7tw"]
 _data = [Vector2(0.0207254, 1), 0.0, 0.0, 0, 0, Vector2(0.906736, 0.292135), -1.44569, 0.0, 0, 0]
@@ -219,9 +221,21 @@ dash_curve = SubResource("Curve_ig7tw")
 position = Vector2(-4, -1)
 zoom = Vector2(2, 2)
 process_callback = 0
+limit_left = 0
+limit_top = 0
+limit_right = 1930
+limit_bottom = 660
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
+
+[node name="Jump" type="AudioStreamPlayer2D" parent="Player"]
+position = Vector2(-525, -533)
+stream = ExtResource("4_lquwl")
+
+[node name="Dash" type="AudioStreamPlayer2D" parent="Player"]
+position = Vector2(-525, -533)
+stream = ExtResource("5_7mycd")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -232,8 +246,8 @@ shape = SubResource("WorldBoundaryShape2D_ig7tw")
 [node name="Background" type="ParallaxBackground" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Background"]
-position = Vector2(960, 353)
-scale = Vector2(2.02188, 2.01989)
+position = Vector2(1126, 250.5)
+scale = Vector2(3.20469, 3.36506)
 texture = ExtResource("3_1bvp3")
 
 [node name="Tilemap" type="Node" parent="."]

@@ -13,15 +13,18 @@ extends CharacterBody2D
 # --- DASH ---
 @export var dash_speed := 1000.0
 @export var dash_max_distance := 100.0
-@export var dash_cooldown := 0.5  # seconds before you can dash again
+@export var dash_cooldown := 0.5
 @export var dash_curve : Curve
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var jump_sound: AudioStreamPlayer2D = $Jump
+@onready var dash_sound: AudioStreamPlayer2D = $Dash
 
 var is_dashing := false
 var can_dash := true
 var dash_start_position := 0.0
 var dash_direction := 0.0
+
 
 func _physics_process(delta: float) -> void:
 	# --- GRAVITY ---
@@ -31,14 +34,14 @@ func _physics_process(delta: float) -> void:
 	# --- DASH → JUMP COMBO ---
 	if Input.is_action_just_pressed("Jump"):
 		if is_dashing:
-			# Cancel dash midair and start a jump
 			stop_dash()
 			velocity.y = jump_force
 			animated_sprite.play("Jump")
+			jump_sound.play()
 		elif is_on_floor() or is_on_wall():
-			# Normal grounded jump
 			velocity.y = jump_force
 			animated_sprite.play("Jump")
+			jump_sound.play()
 
 	# Shorter jump when releasing early
 	if Input.is_action_just_released("Jump") and velocity.y < 0:
@@ -74,7 +77,7 @@ func _physics_process(delta: float) -> void:
 			var t = clamp(current_distance / dash_max_distance, 0.0, 1.0)
 			var dash_factor := dash_curve.sample(t) if dash_curve else 1.0
 			velocity.x = dash_direction * dash_speed * dash_factor
-			velocity.y = 0  # keeps dash straight
+			velocity.y = 0
 
 	# --- FALLING ANIMATION ---
 	if not is_on_floor() and velocity.y > 0 and not is_dashing:
@@ -89,6 +92,7 @@ func start_dash(direction: float) -> void:
 	dash_start_position = position.x
 	dash_direction = direction
 	animated_sprite.play("Dashing")
+	dash_sound.play()
 	get_tree().create_timer(dash_cooldown).timeout.connect(_on_dash_cooldown_finished)
 
 
